@@ -1,0 +1,62 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: BFloFingerprintUpgradeable
+    network: polygon-amoy
+    source:
+      address: "0xB38857278DF05690B0B703406dCB9C6667aA082c"
+      abi: BFloFingerprintUpgradeable
+      startBlock: 6157000
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AdminChanged
+        - Approval
+        - ApprovalForAll
+        - BeaconUpgraded
+        - Initialized
+        - Paused
+        - RoleAdminChanged
+        - RoleGranted
+        - RoleRevoked
+        - Transfer
+        - Unpaused
+        - Upgraded
+        - mintBFloFingerPrintMintEv
+      abis:
+        - name: BFloFingerprintUpgradeable
+          file: ./abis/BFloFingerprintUpgradeable.json
+      eventHandlers:
+        - event: AdminChanged(address,address)
+          handler: handleAdminChanged
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: BeaconUpgraded(indexed address)
+          handler: handleBeaconUpgraded
+        - event: Initialized(uint8)
+          handler: handleInitialized
+        - event: Paused(address)
+          handler: handlePaused
+        - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
+          handler: handleRoleAdminChanged
+        - event: RoleGranted(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleGranted
+        - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleRevoked
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+        - event: Unpaused(address)
+          handler: handleUnpaused
+        - event: Upgraded(indexed address)
+          handler: handleUpgraded
+        - event: mintBFloFingerPrintMintEv(indexed address,string)
+          handler: handlemintBFloFingerPrintMintEv
+      file: ./src/b-flo-fingerprint-upgradeable.ts
